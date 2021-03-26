@@ -3,6 +3,9 @@ branding:
   icon: 'package'
   color: 'black'
 inputs:
+  version:
+    description: 'The helm chart version'
+    required: true
   artifact_name:
     description: 'The base name of the helm chart, defaults to repository name.'
     required: false
@@ -23,6 +26,7 @@ runs:
   using: docker
   image: Dockerfile
   env:
+    VERSION: ${{ inputs.version }}
     ARTIFACT_NAME: ${{ inputs.artifact_name }}
     REPO_URL: ${{ inputs.helm_repo_url }}
     REPO_USER: ${{ inputs.helm_repo_username }}
